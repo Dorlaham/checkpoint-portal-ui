@@ -23,7 +23,6 @@ const BlockedFiles: React.FC = () => {
       if (!auth.isAuthenticated || !auth.user?.id_token) return;
       try {
         const data = await getBlockedTypes(auth.user.id_token);
-        console.log(data);
         
         setBlockedExtensions(data.blocked_extensions || []);
         setBlockedMimes(data.blocked_mime_types || []);

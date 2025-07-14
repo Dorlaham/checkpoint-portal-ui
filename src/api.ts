@@ -41,7 +41,6 @@ export async function apiFetch<T>(
 
 export async function fetchLogs(token: string, cursor?: string): Promise<LogResponse> {  
   const query = cursor ? `?cursor=${encodeURIComponent(cursor)}` : '';
-  console.log(query);
   return await apiFetch<LogResponse>(`/logs/${query}`, {}, token);
 }
 
