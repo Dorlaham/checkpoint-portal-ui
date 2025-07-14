@@ -1,5 +1,6 @@
 // src/api.ts
 export const API_URL = "https://dorlaham-secure.com/api";
+console.log(API_URL);
 
 interface BlockedTypesPayload {
   blocked_extensions: string[];

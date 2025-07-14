@@ -23,7 +23,6 @@ const AuthCallbackHandler = () => {
       if (hasCode && hasState) {
         try {
           const user = await userManager.signinRedirectCallback();
-          console.log("✅ Logged in user:", user);
           navigate("/logs");
         } catch (err) {
           console.error("❌ signinRedirectCallback failed:", err);
