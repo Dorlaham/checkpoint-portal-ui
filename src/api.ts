@@ -1,6 +1,5 @@
 // src/api.ts
 export const API_URL = "https://dorlaham-secure.com/api";
-console.log(API_URL);
 
 interface BlockedTypesPayload {
   blocked_extensions: string[];
@@ -40,9 +39,10 @@ export async function apiFetch<T>(
   return response.json();
 }
 
-export async function fetchLogs(token: string, cursor?: string): Promise<LogResponse> {
+export async function fetchLogs(token: string, cursor?: string): Promise<LogResponse> {  
   const query = cursor ? `?cursor=${encodeURIComponent(cursor)}` : '';
-  return await apiFetch<LogResponse>(`/logs${query}`, {}, token);
+  console.log(query);
+  return await apiFetch<LogResponse>(`/logs/${query}`, {}, token);
 }
 
 export async function getBlockedTypes(token: string) {
