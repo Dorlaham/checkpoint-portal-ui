@@ -1,46 +1,31 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { FileText, Shield, LogOut, BarChart3 } from 'lucide-react';
-import { useAuth } from '@/contexts/AuthContext';
+import { useAuth } from 'react-oidc-context';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 const Sidebar: React.FC = () => {
-  const { logout } = useAuth();
+  const auth = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    logout();
+    auth.removeUser(); // או auth.signoutRedirect()
     navigate('/login');
   };
 
   const navItems = [
-    {
-      to: '/dashboard',
-      icon: BarChart3,
-      label: 'Dashboard'
-    },
-    {
-      to: '/logs',
-      icon: FileText,
-      label: 'Logs'
-    },
-    {
-      to: '/blocked-files',
-      icon: Shield,
-      label: 'Blocked File Types'
-    }
+    { to: '/logs', icon: FileText, label: 'Logs' },
+    { to: '/blocked-files', icon: Shield, label: 'Blocked File Types' }
   ];
 
   return (
     <div className="w-64 bg-card border-r border-border flex flex-col">
-      {/* Header */}
       <div className="p-6 border-b border-border">
         <h1 className="text-xl font-bold text-foreground">Checkpoint Demo</h1>
         <p className="text-sm text-muted-foreground">Security Portal</p>
       </div>
 
-      {/* Navigation */}
       <nav className="flex-1 p-4 space-y-2">
         {navItems.map((item) => (
           <NavLink
@@ -61,7 +46,6 @@ const Sidebar: React.FC = () => {
         ))}
       </nav>
 
-      {/* Logout */}
       <div className="p-4 border-t border-border">
         <Button
           onClick={handleLogout}
