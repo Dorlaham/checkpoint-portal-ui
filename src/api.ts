@@ -55,7 +55,7 @@ export async function updateBlockedTypes(
   return apiFetch(
     '/config/blocked-types',
     {
-      method: 'POST',
+      method: 'PUT',
       body: JSON.stringify(data),
     },
     token
